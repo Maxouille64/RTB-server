@@ -20,7 +20,7 @@ def get_raw(url):
     return myfile.text
 
 def add_user(username):
-	doc = open(root_dir + "userlist.json","r+")
+    doc = open(root_dir + "userlist.json","r+")
 	text = doc.read()
 	jsn = json.loads(text)
 	jsn[username] = (jsn[username] + 1) if jsn.__contains__(username) else 1
@@ -118,27 +118,27 @@ def teamify(M,l,p):
 	return vraiteam, team
 
 def pastify(team, jsn):
-	paste = ""
+    paste = ""
 	for pokemon in team:
 		paste = paste + str(pokemon) + " @ "
 		p=[]
 		w=[]
 		for i, j in jsn[pokemon]["Items"].items():
-			p.append(i)
-			w.append(j)
-		paste = paste + random.choices(
-		 	population=p,
-		   	weights=w,
-		   	k=1)[0]
-		p=[]
-		w=[]
-		for i, j in jsn[pokemon]["Abilities"].items():
-			p.append(i)
-			w.append(j)
-		paste = paste + "\nAbility: " + random.choices(
-		 	population=p,
-		   	weights=w,
-		   	k=1)[0]
+            p.append(i)
+            w.append(j)
+        paste = paste + random.choices(
+            population=p,
+            weights=w,
+            k=1)[0]
+        p=[]
+        w=[]
+        for i, j in jsn[pokemon]["Abilities"].items():
+            p.append(i)
+            w.append(j)
+        paste = paste + "\nAbility: " + random.choices(
+         	population=p,
+           	weights=w,
+           	k=1)[0]
 		p=[]
 		w=[]
 		if "Tera Types" in jsn[pokemon]:
