@@ -11,7 +11,6 @@ levels = {'lunatic': 0 , 'hard': 1500, 'normal': 1630, 'easy': 1760}
 levels_ou = {'lunatic': 0 , 'hard': 1500, 'normal': 1695, 'easy': 1825}
 tiers_ou = ["gen8ou","gen8doublesou","gen9ou"]
 
-#url = "https://raw.githubusercontent.com/Maxouille64/database/main/stats/2023-12/"
 url = "https://www.smogon.com/stats/2024-08/chaos/"
 root_dir = "/home/Maxouille/mysite/"
 list_pok = []
