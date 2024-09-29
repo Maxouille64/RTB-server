@@ -141,11 +141,11 @@ def pastify(team, jsn):
 		   	k=1)[0]
 		p=[]
 		w=[]
-        if "Tera Types" in jsn[pokemon]:
-            paste += "\nTera Type: " + random.choice(jsn[pokemon]["Tera Types"])
+		if "Tera Types" in jsn[pokemon]:
+			paste += "\nTera Type: " + random.choice(jsn[pokemon]["Tera Types"])
 
 		for i, j in jsn[pokemon]["Spreads"].items():
-			p.append(i)
+		    p.append(i)
 			w.append(j)
 		spread = random.choices(
 		 	population=p,
