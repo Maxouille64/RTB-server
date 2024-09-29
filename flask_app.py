@@ -309,4 +309,4 @@ def teambuilder():
 	return jsn
 
 if __name__ == "__main__":
-  app.run(debug=True, port=8001, host="0.0.0.0")
+  app.run(debug=True, ssl_context='adhoc', port=8001, host="0.0.0.0")
