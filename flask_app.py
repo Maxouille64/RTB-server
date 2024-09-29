@@ -138,7 +138,7 @@ def pastify(team, jsn):
 		paste = paste + "\nAbility: " + random.choices(
 		 	population=p,
 		   	weights=w,
-		   	k=1)[0]
+		    k=1)[0]
 		p=[]
 		w=[]
         if "Tera Types" in jsn[pokemon]:
