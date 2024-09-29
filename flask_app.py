@@ -21,29 +21,29 @@ def get_raw(url):
 
 def add_user(username):
     doc = open(root_dir + "userlist.json","r+")
-	text = doc.read()
-	jsn = json.loads(text)
-	jsn[username] = (jsn[username] + 1) if jsn.__contains__(username) else 1
-	doc.seek(0)
-	doc.truncate()
-	doc.write(json.dumps(jsn))
-	return
+    text = doc.read()
+    jsn = json.loads(text)
+    jsn[username] = (jsn[username] + 1) if jsn.__contains__(username) else 1
+    doc.seek(0)
+    doc.truncate()
+    doc.write(json.dumps(jsn))
+    return
 
 #load custom graph
 with open(root_dir + "mat/gen8ou/matrice.txt","r") as raw_mat:
-	mat = raw_mat.read().split("\n")
-	mat = [i.split(",") for i in mat]
-	mat.pop()
+    mat = raw_mat.read().split("\n")
+    mat = [i.split(",") for i in mat]
+    mat.pop()
 
 for i in range(len(mat)):
-	mat[i][i] = float("inf")
+    mat[i][i] = float("inf")
 
 tree = ET.parse(root_dir + "mat/gen8ou/graphe.graphml")
 root = tree.getroot()
 
 for child in root[0]:
 	if child.tag == "node":
-		list_pok.append([child.attrib["id"], child.attrib["mainText"]])
+        list_pok.append([child.attrib["id"], child.attrib["mainText"]])
 
 def url_to_json(url):
     x = requests.get(url)
@@ -52,14 +52,14 @@ def url_to_json(url):
 
 #loads smogons usages stats
 def json_to_mat(jsn, t):
-	mat_stat = []
-	list_pok = []
+    mat_stat = []
+    list_pok = []
 
-	jsn.keys()
-	n=0
-	for i in jsn.keys():
-		list_pok.append([n,i])
-		n+=1
+    jsn.keys()
+    n=0
+    for i in jsn.keys():
+    	list_pok.append([n,i])
+        n+=1
 
 	for i in range(n):
 		jsn[list_pok[i][1]][t][list_pok[i][1]] = 0
