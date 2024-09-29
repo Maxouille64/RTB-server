@@ -9,7 +9,7 @@ import json
 team = []
 levels = {'lunatic': 0 , 'hard': 1500, 'normal': 1630, 'easy': 1760}
 levels_ou = {'lunatic': 0 , 'hard': 1500, 'normal': 1695, 'easy': 1825}
-tiers_ou = ["gen8ou","gen8doublesou","gen9ou"]
+tiers_ou = ["gen9doublesou","gen9ou"]
 
 url = "https://www.smogon.com/stats/2024-08/chaos/"
 root_dir = "/home/Maxouille/mysite/"
@@ -141,6 +141,9 @@ def pastify(team, jsn):
 		   	k=1)[0]
 		p=[]
 		w=[]
+        if "Tera Types" in jsn[pokemon]:
+            paste += "\nTera Type: " + random.choice(jsn[pokemon]["Tera Types"])
+
 		for i, j in jsn[pokemon]["Spreads"].items():
 			p.append(i)
 			w.append(j)
