@@ -12,7 +12,7 @@ levels_ou = {'lunatic': 0 , 'hard': 1500, 'normal': 1695, 'easy': 1825}
 tiers_ou = ["gen9doublesou","gen9ou"]
 
 url = "https://www.smogon.com/stats/2024-08/chaos/"
-root_dir = "/home/Maxouille/mysite/"
+root_dir = "/home/utilisateur/RTB-server/"
 list_pok = []
 
 def get_raw(url):
