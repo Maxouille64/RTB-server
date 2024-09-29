@@ -16,8 +16,8 @@ root_dir = "/home/utilisateur/RTB-server/"
 list_pok = []
 
 def get_raw(url):
-    myfile = requests.get(url)
-    return myfile.text
+	myfile = requests.get(url)
+	return myfile.text
 
 def add_user(username):
 	doc = open(root_dir + "userlist.json","r+")
@@ -46,9 +46,9 @@ for child in root[0]:
 		list_pok.append([child.attrib["id"], child.attrib["mainText"]])
 
 def url_to_json(url):
-    x = requests.get(url)
-    data = x.json()
-    return data
+	x = requests.get(url)
+	data = x.json()
+	return data
 
 #loads smogons usages stats
 def json_to_mat(jsn, t):
@@ -141,8 +141,8 @@ def pastify(team, jsn):
 		   	k=1)[0]
 		p=[]
 		w=[]
-        if "Tera Types" in jsn[pokemon]:
-            paste += "\nTera Type: " + random.choice(jsn[pokemon]["Tera Types"])
+		if "Tera Types" in jsn[pokemon]:
+			paste += "\nTera Type: " + random.choice(jsn[pokemon]["Tera Types"])
 
 		for i, j in jsn[pokemon]["Spreads"].items():
 			p.append(i)
@@ -170,22 +170,22 @@ def pastify(team, jsn):
 	return paste
 
 def setify(team, jsn):
-    paste = ""
-    for pokemon in team:
-        set = random.choices(
-            population=list(jsn[pokemon.replace("-","").replace(" ","").lower()].keys()),
-            weights=list(jsn[pokemon.replace("-","").replace(" ","").lower()].values()),
-            k=1)[0]
-        set = set.split("|")
-        paste = paste + str(pokemon) + " @ "
-        paste = paste + set[1]
-        paste = paste + "\nAbility: " + set[0]
-        evs = set[3].split(",")
-        paste = paste + "\nEVs: " + evs[0] + " HP / " + evs[1] + " Atk / " + evs[2] + " Def / " + evs[3] + " SpA / " + evs[4] + " SpD / " + evs[5] + " Spe / " + evs[0] + "\n" + set[2] + " Nature"
-        for k in range(4):
-            paste = paste + "\n- " + set[4 + k]
-        paste = paste + "\n\n"
-    return paste
+	paste = ""
+	for pokemon in team:
+		set = random.choices(
+			population=list(jsn[pokemon.replace("-","").replace(" ","").lower()].keys()),
+			weights=list(jsn[pokemon.replace("-","").replace(" ","").lower()].values()),
+			k=1)[0]
+		set = set.split("|")
+		paste = paste + str(pokemon) + " @ "
+		paste = paste + set[1]
+		paste = paste + "\nAbility: " + set[0]
+		evs = set[3].split(",")
+		paste = paste + "\nEVs: " + evs[0] + " HP / " + evs[1] + " Atk / " + evs[2] + " Def / " + evs[3] + " SpA / " + evs[4] + " SpD / " + evs[5] + " Spe / " + evs[0] + "\n" + set[2] + " Nature"
+		for k in range(4):
+			paste = paste + "\n- " + set[4 + k]
+		paste = paste + "\n\n"
+	return paste
 
 def sisify(team, tier):
 		jsn = url_to_json("https://pkmn.github.io/smogon/data/stats/" + tier + ".json")["pokemon"]
@@ -193,55 +193,55 @@ def sisify(team, tier):
 		return teamify(mat , list_pok, team)
 
 def smogonify(team, jsn):
-    paste = ""
-    for pokemon in team:
-        pokemon = pokemon.replace("-Mega","").replace("Ash-","")
-        set = jsn[pokemon][random.choice(list(jsn[pokemon].keys()))]
-        paste += str(pokemon) + " @ "
-        if isinstance(set["item"], list):
-            paste += random.choice(set["item"])
-        else:
-            paste += set["item"]
-        if "ability" in set:
-            if isinstance(set["ability"], list):
-                paste += "\nAbility: " + random.choice(set["ability"])
-            else:
-                paste += "\nAbility: " + set["ability"]
+	paste = ""
+	for pokemon in team:
+		pokemon = pokemon.replace("-Mega","").replace("Ash-","")
+		set = jsn[pokemon][random.choice(list(jsn[pokemon].keys()))]
+		paste += str(pokemon) + " @ "
+		if isinstance(set["item"], list):
+			paste += random.choice(set["item"])
+		else:
+			paste += set["item"]
+		if "ability" in set:
+			if isinstance(set["ability"], list):
+				paste += "\nAbility: " + random.choice(set["ability"])
+			else:
+				paste += "\nAbility: " + set["ability"]
 
-        if "teratypes" in set:
-            if isinstance(set["teratypes"], list):
-                paste += "\nTera Type: " + random.choice(set["teratypes"])
-            else:
-                paste += "\nTera Type: " + set["teratypes"]
+		if "teratypes" in set:
+			if isinstance(set["teratypes"], list):
+				paste += "\nTera Type: " + random.choice(set["teratypes"])
+			else:
+				paste += "\nTera Type: " + set["teratypes"]
 
-        paste += "\nEVs: "
-        if isinstance(set["evs"], list):
-            evs = random.choice(set["evs"])
-        else:
-            evs = set["evs"]
-        print(evs)
-        for i in evs:
-            paste = paste + str(evs[i]) + " " + i + " / "
-        if isinstance(set["nature"], list):
-            paste += "\n" + random.choice(set["nature"])  + " Nature\n"
-        else:
-            paste += "\n" + set["nature"]  + " Nature\n"
-        for i in set["moves"]:
-            if isinstance(i, list):
-                paste += "-" + random.choice(i) + "\n"
-            else:
-                paste += "-" + i + "\n"
-        paste = paste + "\n\n"
-    return paste
+		paste += "\nEVs: "
+		if isinstance(set["evs"], list):
+			evs = random.choice(set["evs"])
+		else:
+			evs = set["evs"]
+		print(evs)
+		for i in evs:
+			paste = paste + str(evs[i]) + " " + i + " / "
+		if isinstance(set["nature"], list):
+			paste += "\n" + random.choice(set["nature"])  + " Nature\n"
+		else:
+			paste += "\n" + set["nature"]  + " Nature\n"
+		for i in set["moves"]:
+			if isinstance(i, list):
+				paste += "-" + random.choice(i) + "\n"
+			else:
+				paste += "-" + i + "\n"
+		paste = paste + "\n\n"
+	return paste
 
 app = Flask(__name__)
 CORS(app, resources={r"*": {"origins": "*"}})
 
 @app.route('/')
 def test():
-    doc = open(root_dir + "userlist.json","r+")
-    text = doc.read()
-    return jsonify(sorted(json.loads(text).items(), key=lambda x: x[1], reverse=True))
+	doc = open(root_dir + "userlist.json","r+")
+	text = doc.read()
+	return jsonify(sorted(json.loads(text).items(), key=lambda x: x[1], reverse=True))
 
 @app.route('/matrix/', methods=['GET', 'POST'])
 def handle_request():
@@ -293,15 +293,15 @@ def lunatic():
 
 @app.route('/smogdex/', methods=['GET', 'POST'])
 def smogdex():
-    text = str(request.args.get('input'))
-    print(text)
-    jsn = json.loads(text)
-    tier = jsn['tier']
-    print(tier)
-    username = jsn['username'] if jsn.__contains__('username') else "no name"
-    add_user(username)
-    jsn = url_to_json("https://pkmn.github.io/smogon/data/sets/" + tier + ".json")
-    return smogonify(sisify([random.choice(list(jsn.keys()))],tier)[0], jsn)
+	text = str(request.args.get('input'))
+	print(text)
+	jsn = json.loads(text)
+	tier = jsn['tier']
+	print(tier)
+	username = jsn['username'] if jsn.__contains__('username') else "no name"
+	add_user(username)
+	jsn = url_to_json("https://pkmn.github.io/smogon/data/sets/" + tier + ".json")
+	return smogonify(sisify([random.choice(list(jsn.keys()))],tier)[0], jsn)
 
 @app.route('/teambuilder/', methods=['GET', 'POST'])
 def teambuilder():
