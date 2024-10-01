@@ -141,9 +141,15 @@ def pastify(team, jsn):
 		   	k=1)[0]
 		p=[]
 		w=[]
-		if "Tera Types" in jsn[pokemon]:
-			paste += "\nTera Type: " + random.choice(jsn[pokemon]["Tera Types"])
-
+		for i, j in jsn[pokemon]["Tera Types"].items():
+			p.append(i)
+			w.append(j)
+		paste = paste + "\nTera Type: " + random.choices(
+		 	population=p,
+		   	weights=w,
+		   	k=1)[0]
+		p=[]
+		w=[]
 		for i, j in jsn[pokemon]["Spreads"].items():
 			p.append(i)
 			w.append(j)
