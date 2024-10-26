@@ -5,15 +5,23 @@ import numpy as np
 import random
 import xml.etree.ElementTree as ET
 import json
+import datetime
 
 team = []
 levels = {'lunatic': 0 , 'hard': 1500, 'normal': 1630, 'easy': 1760}
 levels_ou = {'lunatic': 0 , 'hard': 1500, 'normal': 1695, 'easy': 1825}
 tiers_ou = ["gen9doublesou","gen9ou"]
 
-url = "https://www.smogon.com/stats/2024-08/chaos/"
 root_dir = "/home/utilisateur/RTB-server/"
 list_pok = []
+
+def getLastMonthDate():
+	today = datetime.date.today()
+	first = today.replace(day=1)
+	last_month = first - datetime.timedelta(days=1)
+	return last_month.strftime("%Y-%m")
+
+url = f"http://www.smogon.com/stats/{getLastMonthDate()}/chaos/"
 
 def get_raw(url):
 	myfile = requests.get(url)
@@ -317,4 +325,4 @@ def teambuilder():
 	return jsn
 
 if __name__ == "__main__":
-  app.run(debug=False, ssl_context='adhoc', port=8001, host="192.168.1.23")
+	app.run(debug=False, port=8001, host="192.168.1.23")
