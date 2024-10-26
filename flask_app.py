@@ -325,4 +325,4 @@ def teambuilder():
 	return jsn
 
 if __name__ == "__main__":
-	app.run(debug=False, port=8001, host="192.168.1.23")
+	app.run(debug=True, port=8001, host="192.168.1.23")
