@@ -284,7 +284,9 @@ def lunatic():
 	elo = jsn['mod']
 	username = jsn['username'] if jsn.__contains__('username') else "no name"
 	add_user(username)
-	#if tiers_ou[tier]:
+
+	print(url)
+
 	if tier in tiers_ou:
 		elo = levels_ou[elo]
 		text = str(request.args.get('input'))
