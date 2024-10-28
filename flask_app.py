@@ -235,7 +235,8 @@ def smogonify(team, jsn):
 			evs = set["evs"]
 		print(evs)
 		for i in evs:
-			paste = paste + str(evs[i]) + " " + i + " / "
+			paste = paste + f"{str(evs[i])} {i} / "
+		paste = paste[:-2] #remove last '/'
 		if isinstance(set["nature"], list):
 			paste += "\n" + random.choice(set["nature"])  + " Nature\n"
 		else:
@@ -285,7 +286,7 @@ def lunatic():
 	username = jsn['username'] if jsn.__contains__('username') else "no name"
 	add_user(username)
 
-	print(url)
+	print("[[usages stats origin]] >> ",url)
 
 	if tier in tiers_ou:
 		elo = levels_ou[elo]
@@ -327,4 +328,4 @@ def teambuilder():
 	return jsn
 
 if __name__ == "__main__":
-	app.run(debug=True, port=8001, host="192.168.1.23")
+	app.run(debug=False, port=8001, host="192.168.1.23")
