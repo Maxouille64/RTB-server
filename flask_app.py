@@ -137,7 +137,7 @@ def pastify(team, jsn):
 		paste = paste + random.choices(
 		 	population=p,
 		   	weights=w,
-		   	k=1)[0]
+			k=1)[0].replace("nothing","")
 		p=[]
 		w=[]
 		for i, j in jsn[pokemon]["Abilities"].items():
